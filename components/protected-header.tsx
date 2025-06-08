@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { User, HelpCircle, LogOut, ChevronDown } from "lucide-react";
+import { User, LogOut, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { SidebarTrigger } from "./ui/sidebar";
 import { useUser } from "@/context/UserContext";
@@ -55,13 +55,6 @@ const ProtectedHeader = () => {
                 <DropdownMenuItem asChild>
                   <div>
                     <User className="w-4 h-4 mr-2" /> Profile
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/dashboard/about" passHref>
-                <DropdownMenuItem asChild>
-                  <div>
-                    <HelpCircle className="w-4 h-4 mr-2" /> Help
                   </div>
                 </DropdownMenuItem>
               </Link>

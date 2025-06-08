@@ -57,8 +57,8 @@ const LoginPage: React.FC = () => {
     <div
       className={`relative min-h-screen w-full bg-black flex items-center justify-center md:justify-start flex-col`}
     >
-      <div className="flex flex-row items-center w-full">
-        <div className="relative flex flex-col justify-between w-full p-12 mx-48 my-24">
+      <div className="flex md:flex-row items-center w-full">
+        <div className="z-4 bg-black rounded-lg relative flex flex-col justify-between w-full p-12 mx-4 sm:mx-6 md:mx-12 lg:mx-24">
           <div className="relative w-full max-w-xl flex flex-col gap-y-2 text-white mb-6">
             <h1 className="text-4xl">Sign In</h1>
             <h1 className="text-lg">Please login to your account</h1>
@@ -124,7 +124,7 @@ const LoginPage: React.FC = () => {
             </button>
           </form>
         </div>
-        <div className="w-full max-w-[767px] min-w-1/3 h-screen bg-white rounded-tl-[71px] overflow-hidden">
+        <div className="absolute md:relative z-0 w-full max-w-[767px] min-w-1/3 h-screen bg-white rounded-tl-[71px] overflow-hidden">
             <Image
               src={`/background.jpg`}
               alt="Weather Condition Image"
