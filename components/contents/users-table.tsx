@@ -232,22 +232,29 @@ export function UsersTable({ userRole }: UsersTableProps) {
               <CardDescription>{getDescription()}</CardDescription>
             </div>
             {userRole === "traveler" && (
-              <div className="ml-auto flex items-center gap-2">
-                <Button
-                  size="sm"
-                  onClick={handleCreateUser}
-                  className="h-8 gap-1"
-                  variant="outline"
-                >
-                  <PlusCircle className="h-3.5 w-3.5" />
-                  <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                    Add User
-                  </span>
-                </Button>
-                <Button onClick={refreshUsers} variant="outline" className="size-8" size="icon">
-                  <RefreshCw/>
-                </Button>
-              </div>
+              <>
+                <div className="ml-auto flex items-center gap-2">
+                  <Button
+                    size="sm"
+                    onClick={handleCreateUser}
+                    className="h-8 gap-1"
+                    variant="outline"
+                  >
+                    <PlusCircle className="h-3.5 w-3.5" />
+                    <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                      Add User
+                    </span>
+                  </Button>
+                  <Button
+                    onClick={refreshUsers}
+                    variant="outline"
+                    className="size-8"
+                    size="icon"
+                  >
+                    <RefreshCw />
+                  </Button>
+                </div>
+              </>
             )}
           </div>
         </CardHeader>
