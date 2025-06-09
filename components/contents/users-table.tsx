@@ -24,6 +24,7 @@ import { UserUpdateFormModal } from "../modals/UpdateUserModal";
 import { DeleteUserModal } from "../modals/DeleteUserModal";
 import { UserCreateFormModal } from "../modals/CreateUserModal";
 import { userService } from "@/lib/api/users";
+import { UserTourguideUpdateFormModal } from "../modals/UpdateUserTourguideModal";
 
 interface UsersTableProps {
   userRole: "traveler" | "tourguide";
@@ -266,11 +267,14 @@ export function UsersTable({ userRole }: UsersTableProps) {
                   <span className="sr-only">Image</span>
                 </TableHead>
                 <TableHead>Name</TableHead>
-                <TableHead>Notification</TableHead>
-                <TableHead>email</TableHead>
-                <TableHead>
-                  <span className="sr-only">Actions</span>
-                </TableHead>
+                <TableHead>{userRole === "traveler" ? "Notification" : "Active"}</TableHead>
+                <TableHead>Email</TableHead>
+                {userRole === "tourguide" && (
+                  <>
+                    <TableHead>Price</TableHead>
+                  </>
+                )}
+                <TableHead>Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -336,8 +340,18 @@ export function UsersTable({ userRole }: UsersTableProps) {
       />
 
       {/* Update User Modal */}
-      {isEditModalOpen && selectedUser && (
+      {isEditModalOpen && selectedUser && selectedUser.role_id === 3 && (
         <UserUpdateFormModal
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+          user={selectedUser}
+          onSuccess={handleUserUpdated}
+        />
+      )}
+
+      {/* Update User Tourguide Modal */}
+      {isEditModalOpen && selectedUser && selectedUser.role_id === 2 && (
+        <UserTourguideUpdateFormModal
           isOpen={isEditModalOpen}
           onClose={() => setIsEditModalOpen(false)}
           user={selectedUser}

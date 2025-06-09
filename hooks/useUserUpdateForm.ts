@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { UpdateUserData, UserType } from '@/types/types';
+import { useState } from "react";
+import { UpdateUserData, UserType } from "@/types/types";
 
 interface UseUserUpdateFormProps {
   initialData: UserType | null;
@@ -7,18 +7,26 @@ interface UseUserUpdateFormProps {
   onSuccess?: () => void;
 }
 
-export function useUserUpdateForm({ initialData, onSubmit, onSuccess }: UseUserUpdateFormProps) {
+export function useUserUpdateForm({
+  initialData,
+  onSubmit,
+  onSuccess,
+}: UseUserUpdateFormProps) {
   const [formData, setFormData] = useState({
-    name: initialData?.name || '',
-    email: initialData?.email || '',
-    role_id: initialData?.role_id.toString() || '3',
+    name: initialData?.name || "",
+    email: initialData?.email || "",
+    role_id: initialData?.role_id.toString() || "3",
     photo_profile: null as File | null,
+    city_id: initialData?.city_id?.toString() || null,
+    description: initialData?.description || null,
+    is_active: initialData?.is_active || null,
+    price: initialData?.price || null,
   });
-  
+
   const [photoPreview, setPhotoPreview] = useState<string | null>(
     initialData?.photo_url || null
   );
-  
+
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -26,25 +34,32 @@ export function useUserUpdateForm({ initialData, onSubmit, onSuccess }: UseUserU
     const newErrors: Record<string, string> = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = "Name is required";
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
+      newErrors.email = "Email is invalid";
     }
 
     // Validate photo file size (5MB = 5120KB)
     if (formData.photo_profile && formData.photo_profile.size > 5120 * 1024) {
-      newErrors.photo_profile = 'Photo size must be less than 5MB';
+      newErrors.photo_profile = "Photo size must be less than 5MB";
     }
 
     // Validate photo file type
     if (formData.photo_profile) {
-      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+      const allowedTypes = [
+        "image/jpeg",
+        "image/jpg",
+        "image/png",
+        "image/gif",
+        "image/webp",
+      ];
       if (!allowedTypes.includes(formData.photo_profile.type)) {
-        newErrors.photo_profile = 'Please select a valid image file (JPEG, PNG, GIF, WebP)';
+        newErrors.photo_profile =
+          "Please select a valid image file (JPEG, PNG, GIF, WebP)";
       }
     }
 
@@ -54,7 +69,7 @@ export function useUserUpdateForm({ initialData, onSubmit, onSuccess }: UseUserU
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -64,7 +79,7 @@ export function useUserUpdateForm({ initialData, onSubmit, onSuccess }: UseUserU
       await onSubmit(formData);
       onSuccess?.();
     } catch (error) {
-      console.error('Form submission error:', error);
+      console.error("Form submission error:", error);
     } finally {
       setLoading(false);
     }
@@ -72,40 +87,44 @@ export function useUserUpdateForm({ initialData, onSubmit, onSuccess }: UseUserU
 
   const updateField = (
     field: keyof typeof formData,
-    value: string | File | null
+    value: string | number | File | null
   ) => {
-    if (field === 'photo_profile' && value instanceof File) {
-      setFormData(prev => ({ ...prev, [field]: value }));
-      
+    if (field === "photo_profile" && value instanceof File) {
+      setFormData((prev) => ({ ...prev, [field]: value }));
+
       // Create preview URL
       const previewUrl = URL.createObjectURL(value);
       setPhotoPreview(previewUrl);
     } else {
-      setFormData(prev => ({ ...prev, [field]: value }));
+      setFormData((prev) => ({ ...prev, [field]: value }));
     }
-    
+
     // Clear error when user makes changes
     if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: '' }));
+      setErrors((prev) => ({ ...prev, [field]: "" }));
     }
   };
 
   const removePhoto = () => {
-    setFormData(prev => ({ ...prev, photo_profile: null }));
+    setFormData((prev) => ({ ...prev, photo_profile: null }));
     setPhotoPreview(initialData?.photo_url || null);
-    
+
     // Clear photo errors
     if (errors.photo_profile) {
-      setErrors(prev => ({ ...prev, photo_profile: '' }));
+      setErrors((prev) => ({ ...prev, photo_profile: "" }));
     }
   };
 
   const resetForm = () => {
     setFormData({
-      name: initialData?.name || '',
-      email: initialData?.email || '',
-      role_id: initialData?.role_id.toString() || '3',
+      name: initialData?.name || "",
+      email: initialData?.email || "",
+      role_id: initialData?.role_id.toString() || "3",
       photo_profile: null,
+      city_id: initialData?.city_id?.toString() || null,
+      description: initialData?.description || null,
+      is_active: initialData?.is_active || null,
+      price: initialData?.price || null,
     });
     setPhotoPreview(initialData?.photo_url || null);
     setErrors({});

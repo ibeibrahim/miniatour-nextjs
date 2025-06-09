@@ -78,6 +78,10 @@ export const userService = {
     if (userData.photo_profile) {
       formData.append('photo_profile', userData.photo_profile);
     }
+    if(userData.city_id) formData.append('city_id', userData.city_id);
+    if(userData.is_active !== null) formData.append('is_active', userData.is_active.toString());
+    if(userData.description) formData.append('description', userData.description);
+    if(userData.price) formData.append('price', userData.price);
 
     const response = await api.post(`/users/${id}`, formData, {
       headers: {
