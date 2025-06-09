@@ -19,6 +19,10 @@ export interface CreateUserData {
   password: string;
   password_confirmation: string;
   photo_profile: File | null;
+  city_id: string | null;
+  description: string | null;
+  is_active: number | null;
+  price: string | null;
 }
 
 export interface UpdateUserData {

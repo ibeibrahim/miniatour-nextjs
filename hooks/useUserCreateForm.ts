@@ -14,6 +14,10 @@ export function useUserCreateForm({ onSubmit, onSuccess }: UseUserFormProps) {
     photo_profile: null as File | null,
     password: "",
     password_confirmation: "",
+    description: null as string | null,
+    price: null as string | null,
+    city_id: null as string | null,
+    is_active: null as number | null,
   });
 
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
@@ -90,7 +94,7 @@ export function useUserCreateForm({ onSubmit, onSuccess }: UseUserFormProps) {
 
   const updateField = (
     field: keyof typeof formData,
-    value: string | File | null
+    value: string | number | File | null
   ) => {
     if (field === "photo_profile" && value instanceof File) {
       setFormData((prev) => ({ ...prev, [field]: value }));
@@ -126,6 +130,10 @@ export function useUserCreateForm({ onSubmit, onSuccess }: UseUserFormProps) {
       photo_profile: null,
       password: "",
       password_confirmation: "",
+      description: null,
+      price: null,
+      is_active: null,
+      city_id: null,
     });
     setPhotoPreview(null);
     setErrors({});

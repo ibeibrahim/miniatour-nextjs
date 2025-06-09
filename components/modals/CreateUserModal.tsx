@@ -18,12 +18,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { PhotoUpload } from "@/components/ui/photo_upload";
-import { CreateUserData, UserType } from "@/types/types";
+import { City, CreateUserData, UserType } from "@/types/types";
 import { useUsers } from "@/hooks/useUsers";
 import { useUserCreateForm } from "@/hooks/useUserCreateForm";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import { Switch } from "../ui/switch";
+import { useCities } from "@/hooks/useCities";
 
 interface UserCreateFormModalProps {
   isOpen: boolean;
@@ -36,7 +38,10 @@ export function UserCreateFormModal({
   onClose,
   onSuccess,
 }: UserCreateFormModalProps) {
-  const { createUser, loading } = useUsers();
+  const { createUser, loading: loadingUser } = useUsers();
+  const { getCities, loading: loadingCity } = useCities();
+  const [cities, setCities] = useState<City[] | []>([]);
+  const loading = loadingUser || loadingCity;
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirmation, setShowPasswordConfirmation] =
     useState(false);
@@ -49,6 +54,13 @@ export function UserCreateFormModal({
     }
     return result;
   };
+  useEffect(() => {
+    const fetchCities = async () => {
+      const data = await getCities();
+      setCities(data);
+    };
+    fetchCities();
+  }, [getCities]);
 
   const {
     formData,
@@ -152,32 +164,41 @@ export function UserCreateFormModal({
 
               {/* Password Confirmation Field */}
               <div className="grid gap-2">
-                <FormLabel htmlFor="password_confirmation">Confirm Password</FormLabel>
+                <FormLabel htmlFor="password_confirmation">
+                  Confirm Password
+                </FormLabel>
                 <div className="flex w-full items-center justify-between gap-4">
                   <Input
                     id="password_confirmation"
                     type={showPasswordConfirmation ? "text" : "password"}
                     value={formData.password_confirmation}
-                    onChange={(e) => updateField("password_confirmation", e.target.value)}
+                    onChange={(e) =>
+                      updateField("password_confirmation", e.target.value)
+                    }
                     placeholder="Confirm your password"
-                    className={errors.password_confirmation ? "border-red-500" : ""}
+                    className={
+                      errors.password_confirmation ? "border-red-500" : ""
+                    }
                     disabled={loading}
                   />
                   <Button
                     type="button"
                     variant="outline"
                     size="icon"
-                    onClick={() => setShowPasswordConfirmation(!showPasswordConfirmation)}
+                    onClick={() =>
+                      setShowPasswordConfirmation(!showPasswordConfirmation)
+                    }
                     className="text-gray-500 size-8"
                   >
                     {showPasswordConfirmation ? <EyeOff /> : <Eye />}
                   </Button>
                 </div>
                 {errors.password_confirmation && (
-                  <p className="text-sm text-red-500">{errors.password_confirmation}</p>
+                  <p className="text-sm text-red-500">
+                    {errors.password_confirmation}
+                  </p>
                 )}
               </div>
-
 
               {/* Role Field */}
               <div className="grid gap-2">
@@ -191,10 +212,89 @@ export function UserCreateFormModal({
                     <SelectValue placeholder="Select role" />
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value="2">Tourguide</SelectItem>
                     <SelectItem value="3">Traveler</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
+
+              {/* Additional Data for Tourguide */}
+              {formData.role_id === "2" && (
+                <>
+                  {/* Description Field */}
+                  <div className="grid gap-2">
+                    <FormLabel htmlFor="description">Description</FormLabel>
+                    <Input
+                      id="description"
+                      value={formData.description ?? ""}
+                      onChange={(e) =>
+                        updateField("description", e.target.value)
+                      }
+                      placeholder="Enter user description"
+                      className={errors.name ? "border-red-500" : ""}
+                      disabled={loading}
+                    />
+                    {errors.description && (
+                      <p className="text-sm text-red-500">
+                        {errors.description}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Price Field */}
+                  <div className="grid gap-2">
+                    <FormLabel htmlFor="price">Price</FormLabel>
+                    <Input
+                      id="price"
+                      value={formData.price ?? ""}
+                      onChange={(e) => updateField("price", e.target.value)}
+                      placeholder="Enter user price"
+                      className={errors.name ? "border-red-500" : ""}
+                      disabled={loading}
+                    />
+                    {errors.price && (
+                      <p className="text-sm text-red-500">{errors.price}</p>
+                    )}
+                  </div>
+
+                  {/* Active Field */}
+                  <div className="grid gap-2">
+                    <FormLabel htmlFor="is_active">Active</FormLabel>
+                    <Switch
+                      id="is_active"
+                      checked={formData.is_active === 1 ? true : false}
+                      onCheckedChange={(checked) =>
+                        updateField("is_active", checked ? 1 : 0)
+                      }
+                      disabled={loading}
+                    />
+                    {errors.is_active && (
+                      <p className="text-sm text-red-500">{errors.is_active}</p>
+                    )}
+                  </div>
+
+                  {/* City Field */}
+                  <div className="grid gap-2">
+                    <FormLabel htmlFor="city">City</FormLabel>
+                    <Select
+                      value={formData.city_id ?? ""}
+                      onValueChange={(value) => updateField("city_id", value)}
+                      disabled={loading}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select city" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {cities.map((city, key) => (
+                          <SelectItem key={key} value={city.id.toString()}>
+                            {city.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </>
+              )}
             </div>
 
             <DialogFooter>
