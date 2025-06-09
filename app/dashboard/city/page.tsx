@@ -1,8 +1,9 @@
+import { CitiesTable } from "@/components/contents/cities-table";
 
 export default function City() {
   return (
     <div>
-      <h1>City</h1>
+      <CitiesTable/>
     </div>
   );
 }

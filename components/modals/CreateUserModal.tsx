@@ -18,7 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { PhotoUpload } from "@/components/ui/photo_upload";
-import { City, CreateUserData, UserType } from "@/types/types";
+import { CityType, CreateUserData, UserType } from "@/types/types";
 import { useUsers } from "@/hooks/useUsers";
 import { useUserCreateForm } from "@/hooks/useUserCreateForm";
 import { useForm } from "react-hook-form";
@@ -40,7 +40,7 @@ export function UserCreateFormModal({
 }: UserCreateFormModalProps) {
   const { createUser, loading: loadingUser } = useUsers();
   const { getCities, loading: loadingCity } = useCities();
-  const [cities, setCities] = useState<City[] | []>([]);
+  const [cities, setCities] = useState<CityType[] | []>([]);
   const loading = loadingUser || loadingCity;
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirmation, setShowPasswordConfirmation] =

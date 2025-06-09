@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { poppins } from "@/styles/font";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Miniatour Admin",
@@ -17,7 +18,8 @@ export default function RootLayout({
       <body
         className={`${poppins.className} antialiased`}
       >
-        {children}
+        <main>{children}</main>
+        <Toaster position="top-center"/>
       </body>
     </html>
   );

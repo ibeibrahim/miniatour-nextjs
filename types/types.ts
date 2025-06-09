@@ -25,6 +25,14 @@ export interface CreateUserData {
   price: string | null;
 }
 
+export interface CreateCityData {
+  name: string;
+}
+
+export interface UpdateCityData {
+  name: string;
+}
+
 export interface UpdateUserData {
   name: string | null;
   email: string | null;
@@ -35,7 +43,7 @@ export interface UpdateUserData {
   price: string | null;
 }
 
-export interface City {
+export interface CityType {
   id: number;
   name: string;
 }

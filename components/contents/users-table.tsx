@@ -114,15 +114,11 @@ export function UsersTable({ userRole }: UsersTableProps) {
   };
 
   const handleUserCreated = (newUser: UserType) => {
-    setUsers((prev) =>
-      prev.map((user) => (user.id === newUser.id ? newUser : user))
-    );
+    setUsers((prev) => [...prev, newUser]);
 
     // Update cache
     if (usersCache) {
-      usersCache.data = usersCache.data.map((user) =>
-        user.id === newUser.id ? newUser : user
-      );
+      usersCache.data = [...usersCache.data, newUser];
     }
   };
 
@@ -358,12 +354,14 @@ export function UsersTable({ userRole }: UsersTableProps) {
       )}
 
       {/* Delete User Modal */}
-      <DeleteUserModal
-        isOpen={isDeleteModalOpen}
-        onClose={() => setIsDeleteModalOpen(false)}
-        user={selectedUser}
-        onSuccess={handleUserDeleted}
-      />
+      {isDeleteModalOpen && selectedUser && (
+        <DeleteUserModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+          user={selectedUser}
+          onSuccess={handleUserDeleted}
+        />
+      )}
     </>
   );
 }

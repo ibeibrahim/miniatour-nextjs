@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Admin dashboard for Miniatour Management",
 };
 
-export default function RootLayout({
+export default function DashboarLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

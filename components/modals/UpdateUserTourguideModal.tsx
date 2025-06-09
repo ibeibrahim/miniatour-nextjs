@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { PhotoUpload } from "@/components/ui/photo_upload";
 import { useUserUpdateForm } from "@/hooks/useUserUpdateForm";
-import { City, UpdateUserData, UserType } from "@/types/types";
+import { CityType, UpdateUserData, UserType } from "@/types/types";
 import { useUsers } from "@/hooks/useUsers";
 import { useForm } from "react-hook-form";
 import { Switch } from "../ui/switch";
@@ -41,7 +41,7 @@ export function UserTourguideUpdateFormModal({
 }: UserTourguideUpdateFormModalProps) {
   const { updateUser, loading: loadingUser } = useUsers();
   const { getCities, loading: loadingCity } = useCities();
-  const [cities, setCities] = useState<City[] | []>([]);
+  const [cities, setCities] = useState<CityType[] | []>([]);
   const loading = loadingUser || loadingCity;
   const form = useForm();
 
