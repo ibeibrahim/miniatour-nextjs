@@ -327,11 +327,13 @@ export function UsersTable({ userRole }: UsersTableProps) {
           </div>
         </CardFooter>
       </Card>
-      <UserCreateFormModal
-        isOpen={isCreateModalOpen}
-        onClose={() => setIsCreateModalOpen(false)}
-        onSuccess={handleUserCreated}
-      />
+      {isCreateModalOpen && (
+        <UserCreateFormModal
+          isOpen={isCreateModalOpen}
+          onClose={() => setIsCreateModalOpen(false)}
+          onSuccess={handleUserCreated}
+        />
+      )}
 
       {/* Update User Modal */}
       {isEditModalOpen && selectedUser && selectedUser.role_id === 3 && (

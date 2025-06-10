@@ -1,8 +1,9 @@
+import { DestinationsTable } from "@/components/contents/destinations-table";
 
-export default function Destination() {
+export default function DestinationPage() {
   return (
     <div>
-      <h1>Destination</h1>
+      <DestinationsTable/>
     </div>
   );
 }

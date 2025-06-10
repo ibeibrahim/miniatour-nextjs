@@ -47,3 +47,46 @@ export interface CityType {
   id: number;
   name: string;
 }
+
+export interface DestinationImageType {
+  id: number;
+  image_url: string;
+}
+
+export interface DestinationType {
+  id: number;
+  city_id: number;
+  destination_name: string;
+  address: string;
+  latitude: number;
+  longitude: number;
+  description: string;
+  entry_fee: number;
+  operational_hours: string;
+  images: DestinationImageType[] | [];
+  rating: number;
+  review_count: number;
+  city: CityType;
+}
+
+export interface CreateDestinationData {
+  city_id: number;
+  destination_name: string;
+  address: string;
+  latitude: number;
+  longitude: number;
+  description: string;
+  entry_fee: number;
+  operational_hours: string;
+}
+
+export interface UpdateDestinationData {
+  city_id: number | null;
+  destination_name: string | null;
+  address: string | null;
+  latitude: number | null;
+  longitude: number | null;
+  description: string | null;
+  entry_fee: number | null;
+  operational_hours: string | null;
+}
