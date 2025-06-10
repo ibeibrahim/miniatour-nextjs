@@ -175,7 +175,7 @@ export function CitiesTable() {
             >
               <PlusCircle className="h-3.5 w-3.5" />
               <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                Tambah Kota
+                Add City
               </span>
             </Button>
             <Button
@@ -191,12 +191,12 @@ export function CitiesTable() {
             <CardHeader>
               <CardTitle>
                 <div className="flex flex-row gap-x-2 items-center">
-                  <h1>Kota</h1>
+                  <h1>City</h1>
                   <Badge
                     variant="outline"
                     className="bg-purple-50 text-purple-700 border-white"
                   >
-                    0 Kota
+                    0 City
                   </Badge>
                 </div>
               </CardTitle>
@@ -225,7 +225,7 @@ export function CitiesTable() {
             >
               <PlusCircle className="h-3.5 w-3.5" />
               <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                Tambah Kota
+                Add City
               </span>
             </Button>
             <Button
@@ -241,12 +241,12 @@ export function CitiesTable() {
             <CardHeader>
               <CardTitle>
                 <div className="flex flex-row gap-x-2 items-center">
-                  <h1>Kota</h1>
+                  <h1>City</h1>
                   <Badge
                     variant="outline"
                     className="bg-purple-50 text-purple-700 border-white"
                   >
-                    0 Kota
+                    0 City
                   </Badge>
                 </div>
               </CardTitle>
@@ -278,7 +278,7 @@ export function CitiesTable() {
           >
             <PlusCircle className="h-3.5 w-3.5" />
             <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-              Tambah Kota
+              Add City
             </span>
           </Button>
           <Button
@@ -294,12 +294,12 @@ export function CitiesTable() {
           <CardHeader>
             <CardTitle>
               <div className="flex flex-row gap-x-2 items-center">
-                <h1>Kota</h1>
+                <h1>City</h1>
                 <Badge
                   variant="outline"
                   className="bg-purple-50 text-purple-700 border-white"
                 >
-                  {totalCities} Kota
+                  {totalCities} City
                 </Badge>
               </div>
             </CardTitle>

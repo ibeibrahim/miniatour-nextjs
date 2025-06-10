@@ -178,7 +178,7 @@ export function DestinationsTable() {
             >
               <PlusCircle className="h-3.5 w-3.5" />
               <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                Tambah Destinasi
+                Add Destination
               </span>
             </Button>
             <Button
@@ -194,12 +194,12 @@ export function DestinationsTable() {
             <CardHeader>
               <CardTitle>
                 <div className="flex flex-row gap-x-2 items-center">
-                  <h1>Destinasi</h1>
+                  <h1>Destination</h1>
                   <Badge
                     variant="outline"
                     className="bg-purple-50 text-purple-700 border-white"
                   >
-                    0 Destinasi
+                    0 Destination
                   </Badge>
                 </div>
               </CardTitle>
@@ -228,7 +228,7 @@ export function DestinationsTable() {
             >
               <PlusCircle className="h-3.5 w-3.5" />
               <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                Tambah Destinasi
+                Add Destination
               </span>
             </Button>
             <Button
@@ -244,12 +244,12 @@ export function DestinationsTable() {
             <CardHeader>
               <CardTitle>
                 <div className="flex flex-row gap-x-2 items-center">
-                  <h1>Destinasi</h1>
+                  <h1>Destination</h1>
                   <Badge
                     variant="outline"
                     className="bg-purple-50 text-purple-700 border-white"
                   >
-                    0 Destinasi
+                    0 Destination
                   </Badge>
                 </div>
               </CardTitle>
@@ -285,7 +285,7 @@ export function DestinationsTable() {
           >
             <PlusCircle className="h-3.5 w-3.5" />
             <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-              Tambah Destinasi
+              Add Destination
             </span>
           </Button>
           <Button
@@ -301,12 +301,12 @@ export function DestinationsTable() {
           <CardHeader>
             <CardTitle>
               <div className="flex flex-row gap-x-2 items-center">
-                <h1>Destinasi</h1>
+                <h1>Destination</h1>
                 <Badge
                   variant="outline"
                   className="bg-purple-50 text-purple-700 border-white"
                 >
-                  {totalDestinations} Destinasi
+                  {totalDestinations} Destination
                 </Badge>
               </div>
             </CardTitle>
