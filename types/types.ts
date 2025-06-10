@@ -90,3 +90,49 @@ export interface UpdateDestinationData {
   entry_fee: number | null;
   operational_hours: string | null;
 }
+
+export interface TourguideType {
+  id: number;
+  name: string;
+  email: string;
+  user_id: number;
+  city_id: number;
+  description: string;
+  is_active: number;
+  price: string;
+}
+
+export interface AppointmentType {
+  id: number;
+  tourguide_id: number;
+  user_id: number;
+  destination_id: number;
+  appointment_date: string;
+  start_time: string;
+  end_time: string;
+  price: string;
+  status: string;
+  user: UserType;
+  tourguide: TourguideType;
+  destination: DestinationType;
+}
+
+export interface CreateAppointmentData {
+  tourguide_id: number;
+  user_id: number;
+  destination_id: number;
+  appointment_date: string;
+  start_time: string;
+  end_time: string;
+  status: string;
+}
+
+export interface UpdateAppointmentData {
+  tourguide_id: number | null;
+  user_id: number | null;
+  destination_id: number | null;
+  appointment_date: string | null;
+  start_time: string | null;
+  end_time: string | null;
+  status: string | null;
+}

@@ -1,7 +1,7 @@
 // lib/api/users.ts
 import axios from "axios";
 import Cookies from "js-cookie";
-import { CreateUserData, UpdateUserData, UserType } from "@/types/types";
+import { CreateUserData, TourguideType, UpdateUserData, UserType } from "@/types/types";
 
 // Base API configuration
 const api = axios.create({
@@ -39,6 +39,11 @@ export const userService = {
   async getUsers(): Promise<UserType[]> {
     const response = await api.get("/users");
     return response.data["data"];
+  },
+
+  async getTourGuides(): Promise<TourguideType[]> {
+    const response = await api.get("/tourguides");
+    return response.data["tourguides"];
   },
 
   // Get user by ID

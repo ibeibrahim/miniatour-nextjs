@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   AlertDialog,
@@ -10,23 +10,28 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
-import { useDestinations } from '@/hooks/useDestination';
-import { DestinationType } from '@/types/types';
+import { useAppointment } from '@/hooks/useAppointment';
+import { AppointmentType } from '@/types/types';
 
-interface DeleteDestinationModalProps {
+interface DeleteAppointmentModalProps {
   isOpen: boolean;
   onClose: () => void;
-  dest: DestinationType | null;
+  appointment: AppointmentType | null;
   onSuccess?: () => void;
 }
 
-export function DeleteDestinationModal({ isOpen, onClose, dest, onSuccess }: DeleteDestinationModalProps) {
-  const { deleteDestination, loading } = useDestinations();
+export function DeleteAppointmentModal({
+  isOpen,
+  onClose,
+  appointment,
+  onSuccess,
+}: DeleteAppointmentModalProps) {
+  const { deleteAppointment, loading } = useAppointment();
 
   const handleDelete = async () => {
-    if (!dest) return;
+    if (!appointment) return;
 
-    const success = await deleteDestination(dest.id);
+    const success = await deleteAppointment(appointment.id);
     if (success) {
       onSuccess?.();
       onClose();
@@ -37,10 +42,11 @@ export function DeleteDestinationModal({ isOpen, onClose, dest, onSuccess }: Del
     <AlertDialog open={isOpen} onOpenChange={onClose}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle>Are you sure you want to delete this appointment?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete the destination{' '}
-            <strong>{dest?.destination_name}</strong> and remove the data from the system.
+            This action cannot be undone. This will permanently delete the appointment for{' '}
+            <strong>{appointment?.user?.name}</strong> on{' '}
+            <strong>{appointment?.appointment_date}</strong>.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

@@ -22,7 +22,7 @@ export default function DashboarLayout({
           <AppSidebar />
           <div className="flex flex-col flex-1 overflow-hidden">
             <ProtectedHeader />
-            <main className="flex-1 overflow-auto p-4">{children}</main>
+            <main className="flex-1 overflow-auto px-4">{children}</main>
           </div>
         </div>
       </SidebarProvider>

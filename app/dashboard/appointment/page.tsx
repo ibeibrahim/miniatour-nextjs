@@ -1,8 +1,9 @@
+import { AppointmentTable } from "@/components/contents/appointments-table";
 
-export default function Appointment() {
+export default function AppointmentPage() {
   return (
     <div>
-      <h1>Appointment</h1>
+      <AppointmentTable />
     </div>
   );
 }

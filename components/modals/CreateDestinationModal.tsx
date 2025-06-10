@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/select";
 import { useCities } from "@/hooks/useCities";
 import { useDestinationForm } from "@/hooks/useDestinationCreateForm";
-import { useDestinations } from "@/hooks/useDestinations";
+import { useDestinations } from "@/hooks/useDestination";
 import {
   CityType,
   CreateDestinationData,

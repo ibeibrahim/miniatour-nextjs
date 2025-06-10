@@ -19,7 +19,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useCities } from "@/hooks/useCities";
-import { useDestinations } from "@/hooks/useDestinations";
+import { useDestinations } from "@/hooks/useDestination";
 import {
   CityType,
   DestinationType,
